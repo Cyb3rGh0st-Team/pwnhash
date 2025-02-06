@@ -1,0 +1,62 @@
+#!/bin/bash
+
+lookup_hash() {
+    local hash_type="$1"
+    local hash_value="$2"
+    local response
+    
+    response=$(curl -s "https://ntlm.pw/api/lookup/${hash_type}/${hash_value}")
+    
+    if [[ -z "$response" ]]; then
+        echo "No se encontró el hash ${hash_value} en la base de datos."
+    else
+        echo "$response"
+    fi
+}
+
+lookup_hashes_from_file() {
+    local hash_type="$1"
+    local file="$2"
+
+    response=$(curl -s -X POST -H "Content-Type: text/plain" --data-binary "@${file}" "https://ntlm.pw/api/lookup?hashtype=${hash_type}")
+    
+    if [[ -z "$response" ]]; then
+        echo "No se encontró información en la base de datos para los hashes proporcionados."
+    else
+        echo "$response"
+    fi
+}
+
+types_list="nt / lm / md5 / sha1 / sha256"
+
+if [[ -z "$1" ]]; then
+    echo "Uso: $0 <hash_type> (<hash_value> | -f <hash_file>)"
+    echo "Tipos de hash soportados: $types_list"
+    exit 1
+fi
+
+hash_type="$1"
+
+if [[ "$2" == "-f" ]]; then
+    if [[ -z "$3" ]]; then
+        echo "Debe proporcionar el archivo con los hashes."
+        exit 1
+    fi
+    hash_file="$3"
+
+    if [[ ! -f "$hash_file" ]]; then
+        echo "El archivo '$hash_file' no existe."
+        exit 1
+    fi
+    
+    lookup_hashes_from_file "$hash_type" "$hash_file"
+
+else
+    if [[ -z "$2" ]]; then
+        echo "Debe proporcionar un hash para buscar."
+        exit 1
+    fi
+    hash_value="$2"
+
+    lookup_hash "$hash_type" "$hash_value"
+fi
