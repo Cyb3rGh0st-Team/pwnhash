@@ -11,4 +11,4 @@ Tipos de hash soportados: nt lm md5 sha1 sha256
 bash install_bashrc.sh
 ```
 
-## By guchihacker & lavclash75
+## By guchihacker 
