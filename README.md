@@ -21,12 +21,12 @@ pwnhash <hash_type> (<hash_value> | -f <hash_file>)
 ## Install in bashrc
 To integrate the `pwnhash` function into your terminal session, run he following:
 
-```bashrc```
+```.bashrc```
 ```
 wget -qO- https://raw.githubusercontent.com/Cyb3rGh0st-Team/pwnhash/refs/heads/main/pwnhash_bashrc_function | tee -a ~/.bashrc && source ~/.bashrc
 ```
 
-```zshrc```
+```.zshrc```
 ```
 wget -qO- https://raw.githubusercontent.com/Cyb3rGh0st-Team/pwnhash/refs/heads/main/pwnhash_bashrc_function | tee -a ~/.zshrc && source ~/.zshrc
 ```
