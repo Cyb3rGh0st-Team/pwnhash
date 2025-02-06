@@ -1,3 +1,5 @@
+
+#PwnHash function https://github.com/Cyb3rGh0st-Team/pwnhash
 pwnhash() {
     lookup_hash() {
         local hash_type="$1"
