@@ -18,7 +18,7 @@ pwnhash <hash_type> (<hash_value> | -f <hash_file>)
 
 - `-f <hash_file>`: Use this option to specify a file containing a list of hashes (one per line) to be processed.
 
-## Install in bashrc
+## Installation
 To integrate the `pwnhash` function into your terminal session, run he following:
 
 ```.bashrc```
