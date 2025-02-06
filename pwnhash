@@ -20,11 +20,8 @@ lookup_hashes_from_file() {
 
     response=$(curl -s -X POST -H "Content-Type: text/plain" --data-binary "@${file}" "https://ntlm.pw/api/lookup?hashtype=${hash_type}")
     
-    if [[ -z "$response" ]]; then
-        echo "No se encontró información en la base de datos para los hashes proporcionados."
-    else
-        echo "$response"
-    fi
+    echo "$response"
+
 }
 
 types_list="nt / lm / md5 / sha1 / sha256"
